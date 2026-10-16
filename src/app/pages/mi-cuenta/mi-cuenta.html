@@ -1,0 +1,67 @@
+<div class="container py-5" style="max-width: 640px;">
+
+  <!-- Con sesión iniciada -->
+  <div *ngIf="auth.estaAutenticado()">
+    <h2 class="fw-bold mb-4">Mi <span class="text-danger">Cuenta</span></h2>
+
+    <div class="card shadow-sm mb-4">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div
+          class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center fw-bold fs-3"
+          style="width: 64px; height: 64px"
+        >
+          {{ inicial }}
+        </div>
+        <div>
+          <h5 class="mb-0">{{ auth.obtenerUsuario()?.nombre }}</h5>
+          <p class="text-muted mb-0">{{ auth.obtenerUsuario()?.correo | lowercase }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h6 class="fw-bold mb-3">Editar mis datos</h6>
+        <form #cuentaForm="ngForm" (ngSubmit)="guardarNombre()">
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre"
+              [(ngModel)]="nombreEditable"
+              required
+              minlength="2"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <input type="email" class="form-control" [value]="auth.obtenerUsuario()?.correo ?? ''" disabled />
+          </div>
+          <button type="submit" class="btn btn-danger" [disabled]="cuentaForm.invalid">
+            Guardar cambios
+          </button>
+          <span class="text-success ms-3" *ngIf="guardado">Datos actualizados</span>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2">
+      <a routerLink="/dashboard" class="btn btn-outline-dark">Ir al Dashboard</a>
+      <a routerLink="/ofertas" class="btn btn-outline-danger">Ver ofertas</a>
+      <button type="button" class="btn btn-outline-secondary ms-md-auto" (click)="cerrarSesion()">
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+
+  <!-- Sin sesión -->
+  <div *ngIf="!auth.estaAutenticado()" class="text-center">
+    <h2 class="fw-bold">Aún no has iniciado sesión</h2>
+    <p class="text-muted">
+      Inicia sesión para ver y editar tus datos. Si tu correo no está registrado, creamos tu cuenta
+      automáticamente.
+    </p>
+    <a routerLink="/login" class="btn btn-danger">Iniciar sesión</a>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="container py-5" style="max-width: 420px;">
+  <h2 class="fw-bold mb-4 text-center">Iniciar sesión</h2>
+
+  @if (errorLogin) {
+    <div class="alert alert-danger">{{ mensajeError }}</div>
+  }
+
+  <form #loginForm="ngForm" (ngSubmit)="iniciarSesion()">
+    <div class="mb-3">
+      <label class="form-label">Correo</label>
+      <input type="email" class="form-control" name="correo" [(ngModel)]="correo" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="password" required minlength="8" />
+    </div>
+    <button type="submit" class="btn btn-danger w-100" [disabled]="loginForm.invalid">
+      Ingresar
+    </button>
+  </form>
+
+  <p class="text-muted small text-center mt-3">
+    Mínimo 8 caracteres. Si tu correo no está registrado, se creará tu cuenta automáticamente.
+  </p>
+</div>

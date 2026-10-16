@@ -1,0 +1,28 @@
+<div class="container py-5" style="max-width: 600px;">
+  <h2 class="fw-bold mb-4">Contáctanos</h2>
+
+  @if (enviado) {
+    <div class="alert alert-success">¡Gracias! Tu mensaje fue enviado correctamente.</div>
+  }
+
+  <form #contactoForm="ngForm" (ngSubmit)="enviar()">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Correo</label>
+      <input type="email" class="form-control" name="correo" [(ngModel)]="correo" required email #correoField="ngModel" />
+      @if (correoField.invalid && correoField.touched) {
+        <div class="text-danger small">Ingresa un correo válido.</div>
+      }
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Mensaje</label>
+      <textarea class="form-control" rows="4" name="mensaje" [(ngModel)]="mensaje" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-danger" [disabled]="contactoForm.invalid">
+      Enviar mensaje
+    </button>
+  </form>
+</div>

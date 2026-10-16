@@ -1,0 +1,81 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Polo Básico",
+      "imagen": "imagenes/polobasico.jpg",
+      "categoria": "Hombre",
+      "precio": 39.9,
+      "stock": 18,
+      "enOferta": false
+    },
+    {
+      "id": 2,
+      "nombre": "Vestido Casual",
+      "imagen": "imagenes/vestidocasual.jpg",
+      "categoria": "Mujer",
+      "precio": 79.9,
+      "stock": 12,
+      "enOferta": true
+    },
+    {
+      "id": 3,
+      "nombre": "Polo Niño",
+      "imagen": "imagenes/polokid2.jpg",
+      "categoria": "Niños",
+      "precio": 29.9,
+      "stock": 20,
+      "enOferta": false
+    },
+    {
+      "id": 4,
+      "nombre": "Jean Slim",
+      "imagen": "imagenes/jeanslim.jpg",
+      "categoria": "Hombre",
+      "precio": 99.9,
+      "stock": 15,
+      "enOferta": true
+    },
+    {
+      "id": 5,
+      "nombre": "Blusa Elegante",
+      "imagen": "imagenes/blusaelegante.jpg",
+      "categoria": "Mujer",
+      "precio": 59.9,
+      "stock": 10,
+      "enOferta": false
+    },
+    {
+      "id": 6,
+      "nombre": "Gorra Urbana",
+      "imagen": "imagenes/gorraurbana.jpg",
+      "categoria": "Accesorios",
+      "precio": 24.9,
+      "stock": 25,
+      "enOferta": true
+    },
+    {
+      "id": 7,
+      "nombre": "Casaca Deportiva",
+      "imagen": "imagenes/casacadeportiva.jpg",
+      "categoria": "Hombre",
+      "precio": 129.9,
+      "stock": 8,
+      "enOferta": false
+    },
+    {
+      "id": 8,
+      "nombre": "Falda Plisada",
+      "imagen": "imagenes/faldaplisada.jpg",
+      "categoria": "Mujer",
+      "precio": 69.9,
+      "stock": 9,
+      "enOferta": false
+    }
+  ],
+  "usuarios": [
+  { "id": 1, "nombre": "Juan Carlos Manayay", "correo": "juancarlos@styleup.com", "password": "12345678" },
+  { "id": 3, "nombre": "Carlos Martin", "correo": "carlos@styleup.com", "password": "87654321" },
+  { "id": 2, "nombre": "Elias", "correo": "elias@styleup.com", "password": "cliente123" }
+]
+}

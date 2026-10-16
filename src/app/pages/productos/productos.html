@@ -1,0 +1,50 @@
+<div class="container py-5">
+  <h2 class="fw-bold mb-4">Nuestro <span class="text-danger">Catálogo</span></h2>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar producto por nombre..."
+        [(ngModel)]="textoBusqueda"
+      />
+    </div>
+    <div class="col-md-6 d-flex flex-wrap gap-2">
+      <button
+        *ngFor="let cat of categorias"
+        type="button"
+        class="btn btn-sm"
+        [ngClass]="categoriaSeleccionada === cat ? 'btn-danger' : 'btn-outline-danger'"
+        (click)="seleccionarCategoria(cat)"
+      >
+        {{ cat }}
+      </button>
+    </div>
+  </div>
+
+    <p class="text-muted" *ngIf="cargando">Cargando productos...</p>
+
+  <div class="alert alert-warning" *ngIf="error">
+    No se pudo conectar con el servidor de productos (JSON Server). Verifica que esté
+    corriendo en <code>http://localhost:3000</code>.
+  </div>
+
+  <div class="row g-4" *ngIf="!cargando && !error">
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let producto of productosFiltrados">
+      <div class="card h-100 shadow-sm" [ngStyle]="{'opacity': producto.stock === 0 ? 0.6 : 1}">
+        <img [src]="producto.imagen" class="card-img-top" [alt]="producto.nombre" style="height: 200px; object-fit: cover;" />
+        <div class="card-body d-flex flex-column">
+          <h6 class="card-title fw-bold">{{ producto.nombre }}</h6>
+          <p class="text-muted small mb-1">{{ producto.categoria }}</p>
+          <p class="fw-bold text-danger mb-2">{{ producto.precio | currency:'SOL':'S/ ' }}</p>
+          <span class="badge bg-warning text-dark mb-2 align-self-start" *ngIf="producto.enOferta">Oferta</span>
+          <span class="small mt-auto" [ngClass]="producto.stock > 0 ? 'text-success' : 'text-danger'">
+            {{ producto.stock > 0 ? producto.stock + ' disponibles' : 'Sin stock' }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <p class="text-muted" *ngIf="productosFiltrados.length === 0">No se encontraron productos con ese criterio.</p>
+  </div>
+</div>

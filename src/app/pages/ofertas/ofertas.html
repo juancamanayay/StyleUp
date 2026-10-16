@@ -1,0 +1,25 @@
+<div class="container py-5">
+  <h2 class="fw-bold mb-4">Nuestras <span class="text-danger">Ofertas</span></h2>
+
+  @if (cargando) {
+    <p class="text-muted">Cargando ofertas...</p>
+  } @else if (ofertas.length === 0) {
+    <p class="text-muted">No hay ofertas activas por el momento.</p>
+  } @else {
+    <div class="row g-4">
+      @for (producto of ofertas; track producto.id) {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card h-100 shadow-sm border-warning">
+            <span class="badge bg-warning text-dark position-absolute m-2">Oferta</span>
+            <img [src]="producto.imagen" class="card-img-top" [alt]="producto.nombre" style="height: 200px; object-fit: cover;" />
+            <div class="card-body">
+              <h6 class="card-title fw-bold">{{ producto.nombre }}</h6>
+              <p class="text-muted small mb-1">{{ producto.categoria }}</p>
+              <p class="fw-bold text-danger mb-0">{{ producto.precio | currency:'SOL':'S/ ' }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
